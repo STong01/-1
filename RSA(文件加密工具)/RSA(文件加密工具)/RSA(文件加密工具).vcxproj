@@ -64,9 +64,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bigInt.h" />
     <ClInclude Include="RSA.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bigInt.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RSA.cpp" />
   </ItemGroup>

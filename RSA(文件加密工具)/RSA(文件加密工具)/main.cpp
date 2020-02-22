@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "bigInt.h"
 #include "RSA.h"
 using namespace std;
 
@@ -71,15 +72,53 @@ void testFile()
 void testRSA()
 {
 	RSA rsa;
-
+	Key key = rsa.getallKey();
+	cout << "(e,n)" << key._ekey << "," << key._pkey << endl;
+	cout << "(d,n)" << key._dkey << "," << key._pkey << endl;
 	rsa.ecrept("test.txt", "test.ecrpet.txt");
 	rsa.decrept("test.ecrpet.txt", "test.decrpet.txt");
+}
+
+//验证加法
+void testBigIntAdd()
+{
+	BigInt bi;
+	int a = 198765342;
+	int b = 93476581;
+
+	cout << a + b << endl;
+	cout << bi.add("198765342", "93476581") << endl;
+}
+
+//验证减法
+void testBigIntSub()
+{
+	BigInt bi;
+	int a = 198765342;
+	int b = 93476581;
+
+	cout << a - b << endl;
+	cout << bi.sub("198765342", "93476581") << endl;
+
+}
+
+//验证乘法
+void testBigIntMul()
+{
+	BigInt bi;
+	int a = 1234;
+	int b = 3421;
+
+	cout << a * b << endl;
+	cout << bi.mul("1234", "3421") << endl;
 }
 
 int main()
 {
 	//test();
-	testFile();
+	//testFile();
+	//testRSA();
+	testBigIntMul();
 	system("pause");
 	return 0;
 }
