@@ -1,5 +1,40 @@
 #include "bigInt.h"
 
+BigInt::BigInt(const std::string& num)
+	:_number(num)
+{}
+
+//大数运算符重载
+BigInt BigInt::operator+(BigInt& bi)
+{
+	std::string ret = add(_number, bi._number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator- (BigInt& bi)
+{
+	std::string ret = sub(_number, bi._number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator*(BigInt& bi)
+{
+	std::string ret = mul(_number, bi._number);
+	return BigInt(ret);
+}
+
+BigInt BigInt::operator/ (BigInt& bi)
+{
+	std::pair<std::string, std::string> ret = dev(_number, bi._number);
+	return BigInt(ret.first);
+}
+
+BigInt BigInt::operator% (BigInt& bi)
+{
+	std::pair<std::string, std::string> ret = dev(_number, bi._number);
+	return BigInt(ret.second);
+}
+
 //模拟加法的运算
 //大数相加
 std::string BigInt::add(std::string num1, std::string num2)
@@ -141,7 +176,65 @@ std::string BigInt::mul(std::string num1, std::string num2)
 }
 
 //大数相除
-//std::pair<std::string, std::string> BigInt::dev(std::string num1, std::string num2)
-//{
+//借助减法实现
+std::pair<std::string, std::string> BigInt::dev(std::string num1, std::string num2)
+{
+	std::string ret;//商
+	std::string rem = num1;//余数
+	//给除数进行放大，按照10的倍数放大
+	int diffNum = num1.size() - num2.size();
+	//补零操作
+	num2.append(diffNum, '0');
+	for (int i = 0; i <= diffNum; i++)
+	{
+		//记录减法执行的次数
+		char count = '0';
+		while (true)
+		{
+			//在余数中减去除数
+			if (less(rem, num2))
+			{
+				break;
+			}
+			//减小一次更新一次余数
+			rem = sub(rem, num2);
+			count++;
+		}
+		ret += count;
+		//除数减小十倍；
+		num2.pop_back();
+	}
+	//删除前置0
+	while (ret.size() > 1 && ret[0] == '0')
+	{
+		//删除商的前面0
+		ret.erase(0, 1);
+	}
+	//返回<商，余数>
+	return make_pair(ret, rem);
+}
 
-//}
+//小于判断
+bool BigInt::less(std::string& num1, std::string& num2)
+{
+	if (num1.size() < num2.size())
+	{
+		return true;
+	}
+
+	if (num1.size() > num2.size())
+	{
+		return false;
+	}
+
+	//长度相同的时候
+	return num1 < num2;
+}
+
+//<<重载
+std::ostream& operator<<(std::ostream&_cout, BigInt& bi)
+{
+	_cout << bi._number << std::endl;
+	return _cout;
+}
+

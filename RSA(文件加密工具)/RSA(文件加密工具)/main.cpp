@@ -87,7 +87,10 @@ void testBigIntAdd()
 	int b = 93476581;
 
 	cout << a + b << endl;
-	cout << bi.add("198765342", "93476581") << endl;
+	//cout << bi.add("198765342", "93476581") << endl;
+	BigInt aa = "198765342";
+	BigInt bb = "93476581";
+	cout << aa + bb << endl;
 }
 
 //验证减法
@@ -98,8 +101,10 @@ void testBigIntSub()
 	int b = 93476581;
 
 	cout << a - b << endl;
-	cout << bi.sub("198765342", "93476581") << endl;
-
+	//cout << bi.sub("198765342", "93476581") << endl;
+	BigInt aa = "198765342";
+	BigInt bb = "93476581";
+	cout << aa - bb << endl;
 }
 
 //验证乘法
@@ -110,7 +115,28 @@ void testBigIntMul()
 	int b = 3421;
 
 	cout << a * b << endl;
-	cout << bi.mul("1234", "3421") << endl;
+	//cout << bi.mul("1234", "3421") << endl;
+	BigInt aa = "1234";
+	BigInt bb = "3421";
+	cout << aa * bb << endl;
+}
+
+//验证除法
+void testBigIntDev()
+{
+	BigInt bi;
+	int a = 3421;
+	int b = 1234;
+
+	cout << a / b << endl;
+	cout << a % b << endl;
+	//cout << bi.dev("3421", "1234").first << endl;
+	//cout << bi.dev("3421", "1234").second << endl;
+	BigInt aa = "3421";
+	BigInt bb = "1234";
+	cout << aa / bb << endl;
+	cout << aa % bb << endl;
+
 }
 
 int main()
@@ -118,7 +144,7 @@ int main()
 	//test();
 	//testFile();
 	//testRSA();
-	testBigIntMul();
+	testBigIntAdd();
 	system("pause");
 	return 0;
 }
