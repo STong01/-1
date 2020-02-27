@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+//ÏÂÔØÎÄ¼şboost
+//#include <boost/multiprecision/cpp_int.hpp>
 #include "bigInt.h"
 #include "RSA.h"
 using namespace std;
@@ -138,6 +140,13 @@ void testBigIntDev()
 	cout << aa % bb << endl;
 
 }
+
+//void testBoostBigInt()
+//{
+//	boost::multiprecision::cpp_int ci;
+//	ci = 1024;
+//	cout << ci << endl;
+//}
 
 int main()
 {

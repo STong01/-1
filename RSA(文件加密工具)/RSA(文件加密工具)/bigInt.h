@@ -16,6 +16,26 @@ public:
 	BigInt operator%(BigInt& bi);
 	friend std::ostream& operator<<(std::ostream&_cout, BigInt& bi);
 
+	BigInt& operator+=(BigInt& bi);
+	BigInt& operator-=(BigInt& bi);
+	BigInt& operator*=(BigInt& bi);
+	BigInt& operator/=(BigInt& bi);
+	BigInt& operator%=(BigInt& bi);
+
+	// 运算符重载
+#if 0
+	//++a
+	BigInt& operator++();
+	//a++
+	BigInt operator++(int);
+
+	//--a
+	BigInt& operator--();
+	//a--
+	BigInt operator--(int);
+
+#endif
+
 private:
 	std::string add(std::string num1, std::string num2);//大数相加
 	std::string sub(std::string num1, std::string num2);//大数相减
