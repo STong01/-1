@@ -1,7 +1,7 @@
+//#define  _SCL_SECURE_NO_WARNINGS  添加至预处理器
 #include <iostream>
 #include <fstream>
-//下载文件boost
-//#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/cpp_int.hpp>
 #include "bigInt.h"
 #include "RSA.h"
 using namespace std;
@@ -141,19 +141,52 @@ void testBigIntDev()
 
 }
 
-//void testBoostBigInt()
-//{
-//	boost::multiprecision::cpp_int ci;
-//	ci = 1024;
-//	cout << ci << endl;
-//}
+//大数操作，大数文件boost
+void testBoostBigInt()
+{
+	boost::multiprecision::cpp_int ci;
+	ci = 1024;
+	cout << ci << endl;
+	//常量太大
+	//ci = 1234567765234568765434567874345678874345687643456;
+	std::string num = "1234567765234568765434567874345678874345687643456";
+	
+	//拷贝构造
+	boost::multiprecision::cpp_int cppInt(num);
+	cout << cppInt << endl;
+	cout << cppInt + 1 << endl;
+
+	//后面数字表示最大多少位
+	boost::multiprecision::int1024_t cpp1024(num);
+	cout << cpp1024 << endl;
+	cout << cpp1024 + 1<< endl;
+
+	boost::multiprecision::int1024_t cpp1024_2 = boost::multiprecision::int1024_t(1) << 1023;
+	cout << cpp1024_2 << endl;
+
+}
+
+void testBoostRandom()
+{
+	//大数随机数产生
+	boost::random::mt19937 gen(time(NULL));
+	//随机数范围限定在(0, 100)
+	//boost::random::uniform_int_distribution<DataType> dist(0, 100);
+	boost::random::uniform_int_distribution<DataType> dist(0, DataType(1) << 1023);
+	for (int i = 0; i < 100; i++)
+	{
+		DataType num = dist(gen);
+		cout << num << endl;
+	}
+}
 
 int main()
 {
 	//test();
 	//testFile();
-	//testRSA();
-	testBigIntAdd();
+	testRSA();
+	//testBoostBigInt();
+	//testBoostRandom();
 	system("pause");
 	return 0;
 }

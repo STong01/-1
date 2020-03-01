@@ -1,8 +1,14 @@
 #pragma once
-
+#include <boost/multiprecision/cpp_int.hpp>
+#include <boost/multiprecision/random.hpp>
+#include <boost/multiprecision/miller_rabin.hpp>
 #define NUMBER 256
 
-typedef long DataType;
+//typedef long DataType;
+typedef boost::multiprecision::int1024_t DataType;
+
+//重新命名空间
+namespace brdm = boost::random;
 
 struct Key
 {
@@ -51,6 +57,7 @@ public:
 	DataType getGcd(DataType data1, DataType data2);//求解最大公约数
 	void getKeys();//产生所有key值
 	Key getallKey();
+	bool isPrimeBigInt(DataType data);//大数素数产生
 
 private:
 	Key _key;

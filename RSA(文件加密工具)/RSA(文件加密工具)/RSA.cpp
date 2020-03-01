@@ -62,7 +62,7 @@ void RSA::decrept(const char* filename, const char* fileout)
 		for (int i = 0; i < num; i++)
 		{
 			//对每个字节进行解密操作
-			bufferOut[i] = decrept(buffer[i], _key._dkey, _key._pkey);
+			bufferOut[i] = (char) decrept(buffer[i], _key._dkey, _key._pkey);
 		}
 		fout.write(bufferOut, num);
 	}
@@ -83,9 +83,13 @@ void RSA::getKeys()
 	}
 	
 	DataType orla = getOrla(prime1, prime2);
+	std::cout << "orla finish" << std::endl;
 	_key._pkey = getPkey(prime1, prime2);
+	std::cout << "n finish" << std::endl;
 	_key._ekey = getEkey(orla);
+	std::cout << "e finish" << std::endl;
 	_key._dkey = getDkey(_key._ekey, orla);
+	std::cout << "d finish" << std::endl;
 }
 
 Key RSA::getallKey()
@@ -121,22 +125,30 @@ DataType RSA::decrept(DataType data, DataType dkey, DataType pkey)
 //产生素数
 DataType RSA::getPrime()
 {
-	srand(time(NULL));
+	std::cout << "getPrime()" << std::endl;
+	//srand(time(NULL));
+	brdm::mt19937 gen(time(NULL));
+	brdm::uniform_int_distribution<DataType> dist(0, DataType(1) << 256);
+
 	DataType prime;
 	while (true)
 	{
-		prime = rand() % 100 + 2;//(2 - 102)
-		if (isPrime(prime))
+		//prime = rand() % 100 + 2;//(2 - 102)
+		prime = dist(gen);
+		//std::cout << "BigInt Random: " << prime << std::endl;
+		if (isPrimeBigInt(prime))
 		{
 			break;
 		}
 	}
+	std::cout << "getPrime() finish" << std::endl;
 	return prime;
 }
 
 //判断是不是素数
 bool RSA::isPrime(DataType data)
 {
+	std::cout << "isPrime()" << std::endl;
 	if (data <= 0)
 	{
 		return false;
@@ -149,7 +161,23 @@ bool RSA::isPrime(DataType data)
 			return false;
 		}
 	}
+	std::cout << "isPrime() finish" << std::endl;
 	return true;
+}
+
+//大数判断是否为素数
+bool RSA::isPrimeBigInt(DataType data)
+{
+	brdm::mt11213b gen(time(nullptr));
+	//25为0.25的容错率
+	if (miller_rabin_test(data, 25, gen))
+	{
+		if (miller_rabin_test((data - 1) / 2, 25, gen))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 //产生公钥 n = 素数 * 素数
@@ -167,11 +195,14 @@ DataType RSA::getOrla(DataType prime1, DataType prime2)
 //产生加密密钥e: 1 < e < f(n)
 DataType RSA::getEkey(DataType orla)
 {
-	srand(time(NULL));
+	//srand(time(NULL));
+	brdm::mt19937 gen(time(NULL));
+	brdm::uniform_int_distribution<DataType> dist(2, orla);
 	DataType ekey;
 	while (true)
 	{
-		ekey = rand() % orla;
+		//ekey = rand() % orla;
+		ekey = dist(gen);
 		if (ekey > 1 && getGcd(ekey, orla) == 1)
 		{
 			return ekey;
