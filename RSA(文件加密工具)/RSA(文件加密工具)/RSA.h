@@ -58,6 +58,8 @@ public:
 	void getKeys();//产生所有key值
 	Key getallKey();
 	bool isPrimeBigInt(DataType data);//大数素数产生
+	//求模反元素，即加密密钥
+	DataType exGcd(DataType a, DataType b, DataType& x, DataType& y);//欧几里得算法
 
 private:
 	Key _key;

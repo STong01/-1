@@ -8,7 +8,7 @@ class BigInt
 public:
 	BigInt(){}
 	BigInt(const std::string& num);
-	BigInt(const int num);
+	BigInt(const int num);//std::to_string(int)
 	BigInt operator+(BigInt& bi);
 	BigInt operator-(BigInt& bi);
 	BigInt operator*(BigInt& bi);
@@ -42,6 +42,8 @@ private:
 	std::string mul(std::string num1, std::string num2);//大数相乘
 	std::pair<std::string, std::string> dev(std::string num1, std::string num2);//大数相除
 	bool less(std::string& num1, std::string& num2);//小于判断
+	//产生大数随机数的算法
+	//实现miller_rabin素性检测算法
 
 	//通过字符串表示
 	std::string _number;

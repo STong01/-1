@@ -110,7 +110,7 @@ DataType RSA::ecrept(DataType data, DataType ekey, DataType pkey)
 		{
 			msgE = (msgE * Ai) % pkey;
 		}
-		ekey >>= 1;
+		ekey >>= 1;// ekey /= 2;
 		Ai = (Ai * Ai) % pkey;
 	}
 	return msgE;
@@ -213,15 +213,19 @@ DataType RSA::getEkey(DataType orla)
 //产生解密密钥d: e * d % f(n) = 1
 DataType RSA::getDkey(DataType ekey, DataType orla)
 {
-	DataType dkey = orla / ekey;
-	while (true)
-	{
-		if ((dkey *ekey) % orla == 1)
-		{
-			return dkey;
-		}
-		dkey++;
-	}
+	DataType x = 0, y = 0;
+	exGcd(ekey, orla, x, y);
+	//变换，让解密密钥是一个比较小的正值
+	return (x % orla + orla) % orla;
+	//DataType dkey = orla / ekey;
+	//while (true)
+	//{
+	//	if ((dkey *ekey) % orla == 1)
+	//	{
+	//		return dkey;
+	//	}
+	//	dkey++;
+	//}
 }
 
 //求解最大公约数(辗转相除法)
@@ -234,4 +238,21 @@ DataType RSA::getGcd(DataType data1, DataType data2)
 		data2 = residual;
 	}
 	return data2;
+}
+
+//求模反元素，即加密密钥
+//欧几里得算法
+DataType RSA::exGcd(DataType a, DataType b, DataType& x, DataType& y)
+{
+	if (b == 0)
+	{
+		x = 1;
+		y = 0;
+		return a;
+	}
+	DataType gcd = exGcd(b, a % b, x, y);
+	DataType x1 = x, y1 = y;
+	x = y1;
+	y = x1 - a / b * y1;
+	return gcd;
 }

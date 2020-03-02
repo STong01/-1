@@ -1,14 +1,17 @@
-﻿生成启动时间为 2020/3/1 23:02:53。
+﻿生成启动时间为 2020/3/2 20:09:55。
      1>项目“C:\Users\Administrator\Desktop\-1\RSA(文件加密工具)\RSA(文件加密工具)\RSA(文件加密工具).vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         E:\S文件\VC\bin\CL.exe /c /IE:\boost\boost_1_58_0 /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RSA.cpp
+         E:\S文件\VC\bin\CL.exe /c /IE:\boost\boost_1_58_0 /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _SCL_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt RSA.cpp main.cpp
          RSA.cpp
      1>e:\boost\boost_1_58_0\boost\format\alt_sstream_impl.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
      1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(30): warning C4244: “初始化”: 从“std::streamsize”转换到“int”，可能丢失数据
      1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(60): warning C4244: “初始化”: 从“std::streamsize”转换到“int”，可能丢失数据
-     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(126): warning C4244: “参数”: 从“time_t”转换到“const uint32_t”，可能丢失数据
-     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(167): warning C4244: “参数”: 从“time_t”转换到“const uint32_t”，可能丢失数据
-     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(194): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(130): warning C4244: “参数”: 从“time_t”转换到“const uint32_t”，可能丢失数据
+     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(171): warning C4244: “参数”: 从“time_t”转换到“const uint32_t”，可能丢失数据
+     1>c:\users\administrator\desktop\-1\rsa(文件加密工具)\rsa(文件加密工具)\rsa.cpp(199): warning C4244: “参数”: 从“time_t”转换到“const uint32_t”，可能丢失数据
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
+         main.cpp
        Link:
          E:\S文件\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Desktop\-1\RSA(文件加密工具)\Debug\RSA(文件加密工具).exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Administrator\Desktop\-1\RSA(文件加密工具)\Debug\RSA(文件加密工具).pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Desktop\-1\RSA(文件加密工具)\Debug\RSA(文件加密工具).lib" /MACHINE:X86 Debug\bigInt.obj
          Debug\main.obj
@@ -18,4 +21,4 @@
 
 生成成功。
 
-已用时间 00:00:02.55
+已用时间 00:00:07.40
